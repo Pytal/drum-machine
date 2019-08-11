@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { DrumHook } from './hooks/hooks'
 
-function App() {
+// TODO:
+
+// DONE:
+
+
+function DrumMachineDisplay() {
+  const drumhook = DrumHook.useContainer();
+
+  function click(event) {
+    console.log( event.target );
+  };
+
+  const padsArr = [
+    ['clip1', 'Q'], ['clip2', 'W'], ['clip3', 'E'],
+    ['clip4', 'A'], ['clip5', 'S'], ['clip6', 'D'],
+    ['clip7', 'Z'], ['clip8', 'X'], ['clip9', 'C']
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id='drum-machine'>
+      <div id='display'>{drumhook.padclip}</div>
+      <div className='buttons'>
+        {padsArr.map( a =>
+        <button onClick={click} id={a[0]} className='drum-pad'>
+          <p id={a[1]}>{a[1]}</p>
+        </button>
+        )}
+      </div>
     </div>
-  );
-}
+  )
+};
 
-export default App;
+function Display() {
+  return (
+    <div className='slate'>
+      <DrumHook.Provider>
+        <DrumMachineDisplay />
+      </DrumHook.Provider>
+    </div>
+  )
+};
+
+export default Display;
