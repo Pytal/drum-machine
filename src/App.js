@@ -7,6 +7,7 @@ import './App.css';
 // TODO: 👉 add audio clips to pads
 
 // DONE: ✅ implement keydown and keyup logic
+//       ✅ improve pad styles and animations
 
 
 function DrumMachineDisplay() {
@@ -52,6 +53,7 @@ function DrumMachineDisplay() {
 function Display() {
   return (
     <div className='slate'>
+      <div className='backdrop' />
       <DrumHook.Provider>
         <DrumMachineDisplay />
       </DrumHook.Provider>
