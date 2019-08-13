@@ -2,14 +2,14 @@
   display: flex;
   justify-content: center;
   height: 100vh;
-  background-color: #222;
+  background-color: #333;
 }
 
 #display { grid-area: display }
 .buttons { grid-area: buttons }
 
 #drum-machine {
-  box-shadow: 0 0 0 1px red;
+  /* box-shadow: 0 0 0 1px red; */
   margin-top: 200px;
   height: fit-content;
   display: grid;
@@ -17,14 +17,35 @@
   grid-template-rows: 50px 300px;
   grid-template-areas: 'display'
                        'buttons';
+  gap: 20px 0;
 }
 
 #display {
+  background-color: darkslateblue;
+}
+
+#display-text {
+  margin-top: 10px;
+  text-align: center;
   color: white;
+}
+
+.active:defined {
+  background-color: salmon;
+}
+
+.drum-pad {
+  border: none;
+  outline: none;
 }
 
 .buttons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  gap: 20px 20px;
+}
+
+.char {
+  pointer-events: none;
 }
