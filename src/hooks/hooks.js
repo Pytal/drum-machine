@@ -13,12 +13,11 @@ function useDrumHook() {
     const audio = document.getElementById(pad.children[1].id);
     if (down_or_up === 'down') {
       pad.classList.add('active');
+      audio.currentTime = 0;
       audio.play();
       setPadclip( pad.getAttribute('data-clip') ); }
     else {
       pad.classList.remove('active');
-      // audio.pause();
-      // audio.currentTime = 0;
     }
   };
 
