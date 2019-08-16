@@ -13,13 +13,14 @@
 }
 
 #display { grid-area: display }
-.buttons { grid-area: buttons }
+#visualizer { grid-area: visualizer }
+.pad-grid { grid-area: pad-grid }
 
 #drum-machine {
   position: relative;
   margin-top: 100px;
   background-color: #222;
-  padding: 100px 70px 100px 100px;
+  padding: 100px 65px 100px 100px;
   height: fit-content;
   align-content: center;
   border-radius: 60px;
@@ -28,27 +29,39 @@
               0 3px 20px 0 rgba(0,0,0,0.2);
   display: grid;
   grid-template-columns: 300px 300px;
-  grid-template-rows: 300px;
-  grid-template-areas: 'buttons display';
+  grid-template-rows: 150px 150px;
+  grid-template-areas: 'pad-grid display'
+                       'pad-grid visualizer';
   gap: 0 0;
 }
 
-#display {
-  background-color: cadetblue;
+#display, #visualizer {
+  display: flex;
   justify-self: center;
-  align-self: center;
-  border-radius: 8px;
+  background-color: #3F3F3F;
+  border-radius: 5px;
   width: 80%;
-  height: 30%;
+  height: 70%;
+}
+
+#display {
+  align-self: flex-end;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 #display-text {
-  margin-top: 10px;
-  text-align: center;
-  color: white;
+  color: whitesmoke;
+  font-size: 30px;
 }
 
-.buttons {
+#visualizer {
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.pad-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -64,12 +77,13 @@
 
 .active:defined {
   background-color: cadetblue;
-  box-shadow: 0 75px 50px -30px rgba(0,0,0,0.5) inset;
-  transform: rotateX(-30deg);
+  color: whitesmoke;
+  box-shadow: 0 90px 50px -30px rgba(0,0,0,0.5) inset;
+  transform: rotateX(30deg);
 }
 
 .drum-pad, .active:defined {
-  transition: transform 0.1s;
+  transition: transform 80ms;
   transform-origin: bottom;
 }
 

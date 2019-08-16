@@ -1,49 +1,50 @@
 import React from 'react';
 import { DrumHook } from './hooks/hooks';
-import { animated } from 'react-spring';
 import './App.css';
 
 
-// TODO: 👉 add audio clips to pads
+// TODO: 👉 explore display-text animations
+//       👉 implement audio visualizer
 
 // DONE: ✅ implement keydown and keyup logic
 //       ✅ improve pad styles and animations
+//       ✅ implement play audio clip functionality
+//       🆗 freeCC Feature Complete
 
 
 function DrumMachineDisplay() {
   const drumhook = DrumHook.useContainer();
 
+  const baseUrl = 'https://s3.amazonaws.com/freecodecamp/drums/';
+
   const padsArr = [
-    {clip: 'clipQ', char: 'Q'}, {clip: 'clipW', char: 'W'}, {clip: 'clipE', char: 'E'},
-    {clip: 'clipA', char: 'A'}, {clip: 'clipS', char: 'S'}, {clip: 'clipD', char: 'D'},
-    {clip: 'clipZ', char: 'Z'}, {clip: 'clipX', char: 'X'}, {clip: 'clipC', char: 'C'}
+    {char: 'Q', clip: 'Heater 1',     url: baseUrl + 'Heater-1.mp3'},
+    {char: 'W', clip: 'Heater 2',     url: baseUrl + 'Heater-2.mp3'},
+    {char: 'E', clip: 'Heater 3',     url: baseUrl + 'Heater-3.mp3'},
+    {char: 'A', clip: 'Heater 4',     url: baseUrl + 'Heater-4_1.mp3'},
+    {char: 'S', clip: 'Clap',         url: baseUrl + 'Heater-6.mp3'},
+    {char: 'D', clip: 'Open HH',      url: baseUrl + 'Dsc_Oh.mp3'},
+    {char: 'Z', clip: 'Kick n\' Hat', url: baseUrl + 'Kick_n_Hat.mp3'},
+    {char: 'X', clip: 'Kick',         url: baseUrl + 'RP4_KICK_1.mp3'},
+    {char: 'C', clip: 'Closed HH',    url: baseUrl + 'Cev_H2.mp3'}
   ];
-
-  function click(event) {
-    console.log( event.target.innerHTML.charAt(22) );
-  };
-
-  function mouseDown(event) {
-    const pad = document.querySelector('#' + event.target.id)
-    pad.classList.add('active');
-  };
-
-  function mouseUp(event) {
-    const pad = document.querySelector('#' + event.target.id)
-    pad.classList.remove('active');
-  };
 
   return (
     <div id='drum-machine'>
-      <animated.div id='display'>
+      <div id='display'>
         <div id='display-text'>{drumhook.padclip}</div>
-      </animated.div>
-      <div className='buttons'>
+      </div>
+      <div id='visualizer' />
+      <div className='pad-grid'>
         {padsArr.map( a =>
-        <animated.button onClick={click} onMouseDown={mouseDown} onMouseUp={mouseUp}
-                         id={a.clip} className='drum-pad'>
-          <div className='char' id={a.char}>{a.char}</div>
-        </animated.button>
+        <button
+          onMouseDown={ e => drumhook.mouseHandler(e, 'down')}
+          onMouseUp={ e => drumhook.mouseHandler(e, 'up')}
+          data-clip={a.clip} key={'clip' + a.char}
+          id={'clip' + a.char} className='drum-pad'>
+          <div className='char'>{a.char}</div>
+          <audio src={a.url} className='clip' id={a.char} />
+        </button>
         )}
       </div>
     </div>
