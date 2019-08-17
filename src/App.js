@@ -11,6 +11,7 @@ import './App.css';
 //       ✅ implement play audio clip functionality
 //       🆗 freeCC Feature Complete
 //       ✅ change logic to allow overlapping audio plays
+//       ✅ lower default volume
 
 
 function DrumMachineDisplay() {

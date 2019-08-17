@@ -13,6 +13,7 @@ function useDrumHook() {
     const audio = document.getElementById(pad.children[1].id);
     if (down_or_up === 'down') {
       pad.classList.add('active');
+      audio.volume = 0.2;
       audio.currentTime = 0;
       audio.play();
       setPadclip( pad.getAttribute('data-clip') ); }
