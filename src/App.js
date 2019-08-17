@@ -4,12 +4,13 @@ import './App.css';
 
 
 // TODO: 👉 explore display-text animations
-//       👉 implement audio visualizer
+//       👉 explore second display functionality
 
 // DONE: ✅ implement keydown and keyup logic
 //       ✅ improve pad styles and animations
 //       ✅ implement play audio clip functionality
 //       🆗 freeCC Feature Complete
+//       ✅ change logic to allow overlapping audio plays
 
 
 function DrumMachineDisplay() {
