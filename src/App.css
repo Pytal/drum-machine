@@ -1,3 +1,10 @@
+:root {
+  --text-color: whitesmoke;
+  --drop-shadow: 0 3px 20px 0 rgba(0,0,0,0.2),
+                 0 3px 20px 0 rgba(0,0,0,0.2),
+                 0 3px 20px 0 rgba(0,0,0,0.2);
+}
+
 .slate {
   display: flex;
   justify-content: center;
@@ -24,15 +31,11 @@
   height: fit-content;
   align-content: center;
   border-radius: 60px;
-  box-shadow: 0 3px 20px 0 rgba(0,0,0,0.2),
-              0 3px 20px 0 rgba(0,0,0,0.2),
-              0 3px 20px 0 rgba(0,0,0,0.2);
+  box-shadow: var(--drop-shadow);
   display: grid;
-  grid-template-columns: 300px 300px;
-  grid-template-rows: 150px 150px;
+  grid-template: 150px 150px / 300px 300px;
   grid-template-areas: 'pad-grid display'
                        'pad-grid visualizer';
-  gap: 0 0;
 }
 
 #display, #visualizer {
@@ -52,7 +55,7 @@
 }
 
 #display-text {
-  color: whitesmoke;
+  color: var(--text-color);
   font-size: 30px;
 }
 
@@ -63,8 +66,7 @@
 
 .pad-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
   gap: 10px 10px;
 }
 
@@ -77,18 +79,18 @@
 
 .active:defined {
   background-color: cadetblue;
-  color: whitesmoke;
+  color: var(--text-color);
   box-shadow: 0 90px 50px -30px rgba(0,0,0,0.5) inset;
   transform: rotateX(30deg);
 }
 
 .drum-pad, .active:defined {
-  transition: transform 80ms;
+  transition: transform 50ms;
   transform-origin: bottom;
 }
 
 .char {
   pointer-events: none;
   font-weight: bold;
-  font-size: 200%;
+  font-size: 28px;
 }
