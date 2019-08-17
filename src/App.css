@@ -1,10 +1,13 @@
+/* Variables */
 :root {
   --text-color: whitesmoke;
   --drop-shadow: 0 3px 20px 0 rgba(0,0,0,0.2),
                  0 3px 20px 0 rgba(0,0,0,0.2),
                  0 3px 20px 0 rgba(0,0,0,0.2);
+  --pad-trans: 50ms;
 }
 
+/* Slate */
 .slate {
   display: flex;
   justify-content: center;
@@ -19,8 +22,9 @@
   filter: brightness(0.5);
 }
 
+/* Drum Machine Grid */
 #display { grid-area: display }
-#visualizer { grid-area: visualizer }
+#visual { grid-area: visual }
 .pad-grid { grid-area: pad-grid }
 
 #drum-machine {
@@ -35,10 +39,11 @@
   display: grid;
   grid-template: 150px 150px / 300px 300px;
   grid-template-areas: 'pad-grid display'
-                       'pad-grid visualizer';
+                       'pad-grid visual';
 }
 
-#display, #visualizer {
+/* Displays */
+#display, #visual {
   display: flex;
   justify-self: center;
   background-color: #3F3F3F;
@@ -47,6 +52,7 @@
   height: 70%;
 }
 
+/* Display */
 #display {
   align-self: flex-end;
   margin-bottom: 10px;
@@ -59,17 +65,28 @@
   font-size: 30px;
 }
 
-#visualizer {
+/* Visual */
+#visual {
   align-self: flex-start;
   margin-top: 10px;
 }
 
+.visual-active:defined {
+  transform: scale(1.1);
+}
+
+#visual, .visual-active:defined {
+  transition: transform var(--pad-trans);
+}
+
+/* Pad Grid */
 .pad-grid {
   display: grid;
   grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
   gap: 10px 10px;
 }
 
+/* Pad */
 .drum-pad {
   border: none;
   outline: none;
@@ -85,10 +102,11 @@
 }
 
 .drum-pad, .active:defined {
-  transition: transform 50ms;
+  transition: transform var(--pad-trans);
   transform-origin: bottom;
 }
 
+/* Pad Char */
 .char {
   pointer-events: none;
   font-weight: bold;
